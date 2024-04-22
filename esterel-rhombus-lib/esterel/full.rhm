@@ -18,6 +18,7 @@ export:
   every
   sustain
   def_strl
+  halt
 
 defn.macro 'def_strl $id: $body':
     'def $id: esterel: $body'
@@ -62,3 +63,6 @@ expr.macro
      $body':
     '#{every/proc}(fun (): $s ...,
                    fun (): $body)'
+
+fun halt():
+  full.halt()

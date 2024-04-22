@@ -11,7 +11,7 @@ import:
     expose #{no-init}
   lib("syntax/location.rkt"):
     expose #{quote-srcloc}
-  lib("racket/set.rkt") as rset
+  lib("racket/set.rkt") as racketset
 
 export:
   def_signal
@@ -27,39 +27,56 @@ export:
   pause
   signal_name
   signal_index
+  is_esterel
+  in_esterel
 
-meta syntax_class SignalDefinition
-| '[$id_expr, ~memoryless, ~init $init_expr, ~combine $combine_expr]':
-    field id = id_expr
+meta syntax_class SignalOptions
+| '~memoryless ~init $init_expr ~combine $combine_expr':
     field init = init_expr
     field combine = combine_expr
     field memoryless = #true
-| '[$id_expr, ~init $init_expr, ~combine $combine_expr]':
-    field id = id_expr
+| '~init $init_expr ~combine $combine_expr':
     field init = init_expr
     field combine = combine_expr
     field memoryless = #false
-| '[$id_expr, ~combine $combine_expr]':
-    field id = id_expr
+| '~combine $combine_expr':
     field init =' #{no-init}'
     field combine = combine_expr
     field memoryless = #false
-| '[$id_expr, ~single]':
-    field id = id_expr
+| '~single':
     field init = '#{no-init}'
     field combine = '#'single'
     field memoryless = #false
+
+meta syntax_class SignalDefinition
+| '{$id_exprs, ...} $(options::SignalOptions)':
+    field [id, ...] = [id_exprs, ...]
+    field [init, ...] = [id_exprs, ...].map(fun (_): options.init)
+    field [combine, ...] = [id_exprs, ...].map(fun(_): options.combine)
+    field [memoryless, ...] = [id_exprs, ...].map(fun(_): options.memoryless)
+| '$id_expr $(options::SignalOptions)':
+    field [id, ...] = [id_expr]
+    field [init, ...] = [options.init]
+    field [combine, ...] = [options.combine]
+    field [memoryless, ...] = [options.memoryless]
 | '$id_expr':
-    field id = id_expr
-    field init = '#{no-init}'
-    field combine = #false
-    field memoryless = #false
+    field [id, ...] = [id_expr]
+    field [init, ...] = ['#{no-init}']
+    field [combine, ...] = [#false]
+    field [memoryless, ...] = [#false]
 
-defn.macro 'def_signal {$(signal_definition :: SignalDefinition), ...}':
-  def [srclocs, ...] = [expr_meta.pack_s_exp(['#{quote-srcloc}', signal_definition.id]), ...]
-  'def $signal_definition.id : #{mk-signal/args}(#'$signal_definition.id, $signal_definition.init, $signal_definition.combine, $srclocs, $signal_definition.memoryless)
-   ...'
+defn.macro 'def_signal [$(signal_definition :: SignalDefinition), ...]':
+  def [[srclocs, ...], ...] = [[expr_meta.pack_s_exp(['#{quote-srcloc}', signal_definition.id]), ...], ...]
+  'def [[$signal_definition.id, ...], ...] = [[#{mk-signal/args}(#'$signal_definition.id, $signal_definition.init, $signal_definition.combine, $srclocs, $signal_definition.memoryless), ...], ...]'
 
+
+expr.macro 'with_signal [$(signal_definition :: SignalDefinition), ...]:
+              $body':
+  def [[srclocs, ...], ...] = [[expr_meta.pack_s_exp(['#{quote-srcloc}', signal_definition.id]), ...], ...]
+  'block:
+     def [[$signal_definition.id, ...], ...] = [[#{mk-signal/args}(#'$signal_definition.id, $signal_definition.init, $signal_definition.combine, $srclocs, $signal_definition.memoryless), ...], ...]
+     #{run-and-kill-signals!}(racketset.set($signal_definition.id,...,...),fun (): $body)'
+  
 expr.macro 'esterel:
               $body':
   '#{esterel/proc}(0, fun (): $body)'
@@ -88,14 +105,6 @@ expr.macro 'with_trap $t:
               $body':
   '#{with-trap/proc}(#'$t,fun ($t):
                             $body)'
-  
-expr.macro 'with_signal {$(signal_definition :: SignalDefinition), ...}:
-              $body':
-  def [srclocs, ...] = [expr_meta.pack_s_exp(['#{quote-srcloc}', signal_definition.id]), ...]
-  'block:
-     def $signal_definition.id : #{mk-signal/args}(#'$signal_definition.id, $signal_definition.init, $signal_definition.combine, $srclocs, $signal_definition.memoryless)
-     ...
-     #{run-and-kill-signals!}(rset.set($signal_definition.id,...),fun (): $body)'
 
 expr.macro 'par
             | $body
@@ -113,3 +122,24 @@ fun signal_name(s):
 
 fun signal_index(s):
   kernel.#{signal-index}(s)
+
+fun is_esterel(v):
+  kernel.#{esterel?}(v)
+
+fun in_esterel():
+  kernel.#{in-esterel?}()
+
+fun is_signal(v):
+  kernel.#{signal?}(v)
+
+fun is_present(s, ~pre: pre = 0):
+  #{present?}(s, pre)
+
+fun signal_value(s, ~pre: n = 0, ~can: can = Set()):
+  kernel.#{signal-value}(s, n, can)
+
+fun debug_when_must(stx):
+  kernel.#{debug-when-must}(stx)
+
+fun signal_combine(s):
+  kernel.#{signal-combine}(s)
