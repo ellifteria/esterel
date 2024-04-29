@@ -30,6 +30,7 @@ export:
   signal_index
   is_esterel
   in_esterel
+  signal_value
 
 meta syntax_class SignalOptions
 | '~memoryless ~init $init_expr ~combine $combine_expr':
@@ -109,7 +110,8 @@ fun react(r, ~emit: signals = []):
   // the for loop here converts an equal
   // hash into an equal-always hash in
   // order to cooperate better with Rhombus
-  def rkt_signals = PairList(&signals)
+  def rkt_signals = PairList(&signals).map(fun | ([signal, val]): Pair.cons(signal, val)
+                                               | (signal): signal)
   for Map:
     each (k,v): kernel.#{react!}(r, ~emit: rkt_signals) :~ Map
     values(k,v)
@@ -149,7 +151,7 @@ fun is_present(s, ~pre: pre = 0):
   #{present?}(s, pre)
 
 fun signal_value(s, ~pre: n = 0, ~can: can = Set()):
-  kernel.#{signal-value}(s, n, can)
+  kernel.#{signal-value}(s, ~pre: n, ~can: racketset.#{list->set}(PairList(&Set.to_list(can))))
 
 fun debug_when_must(stx):
   kernel.#{debug-when-must}(stx)
