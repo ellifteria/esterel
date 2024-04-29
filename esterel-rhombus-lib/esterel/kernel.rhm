@@ -31,6 +31,8 @@ export:
   is_esterel
   in_esterel
   signal_value
+  suspend
+  is_trap
 
 meta syntax_class SignalOptions
 | '~memoryless ~init $init_expr ~combine $combine_expr':
@@ -158,3 +160,11 @@ fun debug_when_must(stx):
 
 fun signal_combine(s):
   kernel.#{signal-combine}(s)
+
+expr.macro 'suspend:
+              $body_expr
+              ~when $when_expr':
+    'pkernel.suspend($body_expr, $when_expr)'
+    
+fun is_trap(v):
+  pkernel.#{trap?}(v)
