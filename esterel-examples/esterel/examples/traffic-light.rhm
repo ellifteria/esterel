@@ -1,5 +1,7 @@
 #lang rhombus
 
+// todo: port the racket/pict stuff to rhombus pict
+
 import:
   esterel/full open
   gui open
