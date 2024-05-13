@@ -107,9 +107,13 @@ expr.macro 'with_signal [$(signal_definition :: SignalDefinition), ...]:
      def_signal [$signal_definition, ...]
      #{run-and-kill-signals!}(racketset.set($signal_definition.id,...,...),fun (): $body)'
   
-expr.macro 'esterel:
-              $body':
-  '#{esterel/proc}(0, fun (): $body)'
+expr.macro
+| 'esterel:
+     $body':
+    '#{esterel/proc}(0, fun (): $body)'
+| 'esterel ~pre $pre:
+     $body':
+    '#{esterel/proc}($pre, fun (): $body)'
 
 operator ¿ x:
   ~stronger_than |||
