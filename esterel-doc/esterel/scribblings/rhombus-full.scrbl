@@ -5,26 +5,24 @@
       rhombus open
       esterel/full open)
 
-@title{Rhombus Esterel}
+@title{Rhombus Esterel Reference}
 
 @docmodule(esterel/full)
 
-The @rhombusmodname(esterel/full) Rhombus library is built on the Racket
-@racketmodname(esterel/full) library. Similar to the Racket library, it
-provides all of the names documented here as well as the names documented
-in @rhombusmodname(esterel/kernel).
+The @rhombusmodname(esterel/full) Rhombus library is built on the Racket @racketmodname(esterel/full) library.
+As in the Racket @racketmodname(esterel/full) library, it provides all of the names documented here as well as the names documented in @rhombusmodname(esterel/kernel).
 
 @doc(
     expr.macro 'loop:
-        $body
-        ...
-        ~each $restart'
+                  $body
+                  ...
+                  ~each $restart'
     expr.macro 'loop:
-        $body'
+                  $body'
 ){
-    In the first form, runs @rhombus($body) over and over.
-    In the second form, starts by running @rhombus($body) and then @rhombus(halt)ing.
-    Restarts @rhombus($body) when @rhombus($restart) becomes true.
+    In the first form, runs @rhombus(body) over and over.
+    In the second form, starts by running @rhombus(body) and then @rhombus(halt)ing.
+    Restarts @rhombus(body) when @rhombus(restart) becomes true.
 }
 
 @doc(
@@ -32,28 +30,28 @@ in @rhombusmodname(esterel/kernel).
     expr.macro 'await $when ... ~n $n ...'
     expr.macro 'await ~immediate $when ...'
 ){
-    In the first form, @rhombus(pause)s until @rhombus($when) returns a true value, but at least one instant.
-    In the second form, @rhombus(pause) until @rhombus($when) returns a true value @rhombus(~n) times.
-    In the third form, the value of @rhombus($when) is tested in the first instant, and thus the @rhombus(await) might terminate immediately.
+    In the first form, @rhombus(pause)s until @rhombus(when) returns a true value, but at least one instant.
+    In the second form, @rhombus(pause) until @rhombus(when) returns a true value @rhombus(~n) times.
+    In the third form, the value of @rhombus(when) is tested in the first instant, and thus the @rhombus(await) might terminate immediately.
 }
 
 @doc(
     expr.macro 'every $s ...:
-        $body'
+                  $body'
     expr.macro 'every $s ... ~n $n ...:
-        $body'
+                  $body'
     expr.macro 'every ~immediate $s ...:
-        $body'
+                  $body'
 ){
-    In the first form, @rhombus(await)s @rhombus($s) evaluating to a true value and then starts running the @rhombus($body); when whenever @rhombus($s) becomes true, restarts @rhombus($body).
-    The second form is similar to the first, except that it waits for @rhombus($s) to be true @rhombus($n) times before restarting @rhombus($body).
-    In the third form, if @rhombus($s) evaluates to a true value in the current instant, the @rhombus($body) is evaluated in the current instant.
+    In the first form, @rhombus(await)s @rhombus(s) evaluating to a true value and then starts running the @rhombus(body); when whenever @rhombus(s) becomes true, restarts @rhombus(body).
+    The second form is similar to the first, except that it waits for @rhombus(s) to be true @rhombus(n) times before restarting @rhombus(body).
+    In the third form, if @rhombus(s) evaluates to a true value in the current instant, the @rhombus(body) is evaluated in the current instant.
 }
 
 @doc(
     fun sustain(s)
     fun sustain(s, v)
-) {
+){
     Emits @rhombus(s) and pauses in every instant, forever.
 
     As with @rhombus(emit), if @rhombus(s) is a valued signal,
@@ -67,17 +65,17 @@ in @rhombusmodname(esterel/kernel).
 
 @doc(
     expr.macro 'abort:
-        $body ...
-        ~when $when ...'
+                  $body ...
+                  ~when $when ...'
     expr.macro 'abort ~weak:
-        $body ...
-        ~when $when ...'
+                  $body ...
+                  ~when $when ...'
     expr.macro 'abort ~weak:
-        $body ...
-        ~when_immediate $when ...'
+                  $body ...
+                  ~when_immediate $when ...'
 ){
-    Terminates when @rhombus($body) terminates or when @rhombus($when) returns a true value. If @rhombus(~weak) is present, the @rhombus($body)s are executed when @rhombus($when) is true; they are skipped if @rhombus(~weak) is not present.
-    If @rhombus(~when) is used, the @rhombus($body)s are executed at least once and the @rhombus(abort) runs for at least one instant; if @rhombus(~when_immediate) is used, the @rhombus($when) is tested in the first instant and the expression terminates in the first instant if @rhombus($when) returns a true value.
+    Terminates when @rhombus(body) terminates or when @rhombus(when) returns a true value. If @rhombus(~weak) is present, the @rhombus(body)s are executed when @rhombus(when) is true; they are skipped if @rhombus(~weak) is not present.
+    If @rhombus(~when) is used, the @rhombus(body)s are executed at least once and the @rhombus(abort) runs for at least one instant; if @rhombus(~when_immediate) is used, the @rhombus(when) is tested in the first instant and the expression terminates in the first instant if @rhombus(when) returns a true value.
 }
 
-@doc(reducer.macro '|||')
+@doc(reducer.macro '|||'){}

@@ -1,5 +1,5 @@
-1605
-((3) 0 () 2 ((q lib "esterel/full.rkt") (q lib "esterel/kernel.rkt")) () (h ! (equal) ((c form c (c (? . 0) q for*/par)) q (3657 . 2)) ((c def c (c (? . 1) q react!)) q (94 . 12)) ((c def c (c (? . 0) q halt)) q (3008 . 2)) ((c def c (c (? . 1) q signal-name)) q (1684 . 3)) ((c def c (c (? . 1) q make-global-signal)) q (1241 . 9)) ((c def c (c (? . 1) q pause)) q (2293 . 2)) ((c form c (c (? . 0) q await)) q (3346 . 4)) ((c def c (c (? . 1) q signal?)) q (1631 . 3)) ((c form c (c (? . 1) q with-trap)) q (2361 . 2)) ((c def c (c (? . 1) q signal-combine)) q (1835 . 3)) ((c form c (c (? . 0) q every)) q (3436 . 4)) ((c def c (c (? . 1) q in-esterel?)) q (704 . 2)) ((c form c (c (? . 0) q abort)) q (3181 . 4)) ((c def c (c (? . 1) q exit-trap)) q (2405 . 4)) ((c form c (c (? . 1) q esterel)) q (0 . 5)) ((c def c (c (? . 1) q esterel?)) q (650 . 3)) ((c def c (c (? . 1) q signal-index)) q (1763 . 3)) ((c def c (c (? . 1) q signal-value)) q (2023 . 5)) ((c form c (c (? . 0) q for/par)) q (3595 . 2)) ((c form c (c (? . 1) q exec)) q (2540 . 16)) ((c form c (c (? . 1) q define-signal)) q (1205 . 2)) ((c def c (c (? . 1) q present?)) q (1926 . 4)) ((c form c (c (? . 1) q debug-when-must)) q (814 . 2)) ((c def c (c (? . 1) q exn:fail:not-constructive?)) q (742 . 3)) ((c form c (c (? . 1) q suspend)) q (2322 . 2)) ((c def c (c (? . 1) q emit)) q (2158 . 6)) ((c form c (c (? . 1) q par)) q (2269 . 2)) ((c form c (c (? . 0) q loop)) q (3107 . 3)) ((c def c (c (? . 0) q sustain)) q (3036 . 4)) ((c def c (c (? . 1) q trap?)) q (2489 . 3)) ((c form c (c (? . 1) q with-signal)) q (852 . 11))))
+3042
+((3) 0 () 5 ((q lib "esterel/kernel.rhm") (q lib "esterel/kernel.rkt") (q lib "esterel/full.rkt") (q lib "esterel/full.rhm") (q 3925 . 7)) () (h ! (equal) ((c def c (c (? . 1) q react!)) q (94 . 12)) ((c def c (c (? . 2) q halt)) q (3008 . 2)) ((c def c (c (? . 0) q esterel)) q (3720 . 8)) ((c def c (c (? . 0) q \|\|\|)) q (4392 . 3)) ((c def c (c (? . 0) q def_signal rhombus/defn)) c (? . 4)) ((c def c (c (? . 1) q make-global-signal)) q (1241 . 9)) ((c def c (c (? . 0) q react)) q (3783 . 3)) ((c def c (c (? . 1) q signal?)) q (1631 . 3)) ((c def c (c (? . 0) q signal_name)) q (4104 . 3)) ((c form c (c (? . 1) q with-trap)) q (2361 . 2)) ((c def c (c (? . 0) q par)) q (4361 . 5)) ((c def c (c (? . 0) q is_esterel)) q (3832 . 3)) ((c def c (c (? . 0) q is_trap)) q (4548 . 3)) ((c def c (c (? . 1) q in-esterel?)) q (704 . 2)) ((c def c (c (? . 1) q signal-value)) q (2023 . 5)) ((c def c (c (? . 1) q present?)) q (1926 . 4)) ((c form c (c (? . 1) q define-signal)) q (1205 . 2)) ((c form c (c (? . 1) q exec)) q (2540 . 16)) ((c form c (c (? . 2) q for/par)) q (3595 . 2)) ((c def c (c (? . 1) q exn:fail:not-constructive?)) q (742 . 3)) ((c form c (c (? . 1) q suspend)) q (2322 . 2)) ((c def c (c (? . 3) q abort)) q (4930 . 15)) ((c form c (c (? . 1) q par)) q (2269 . 2)) ((c def c (c (? . 0) q is_present)) q (4198 . 3)) ((c def c (c (? . 0) q signal_combine)) q (4165 . 3)) ((c form c (c (? . 1) q with-signal)) q (852 . 11)) ((c def c (c (? . 1) q trap?)) q (2489 . 3)) ((c form c (c (? . 2) q loop)) q (3107 . 3)) ((c def c (c (? . 0) q signal_value)) q (4246 . 3)) ((c form c (c (? . 2) q for*/par)) q (3657 . 2)) ((c def c (c (? . 0) q signal_index)) q (4134 . 3)) ((c def c (c (? . 1) q signal-name)) q (1684 . 3)) ((c def c (c (? . 3) q loop)) q (4574 . 10)) ((c def c (c (? . 1) q pause)) q (2293 . 2)) ((c def c (c (? . 3) q every)) q (4742 . 12)) ((c form c (c (? . 2) q await)) q (3346 . 4)) ((c def c (c (? . 3) q \|\|\| rhombus/reducer)) q (5100 . 3)) ((c def c (c (? . 3) q sustain)) q (4858 . 6)) ((c def c (c (? . 0) q with_signal)) c (? . 4)) ((c def c (c (? . 1) q signal-combine)) q (1835 . 3)) ((c form c (c (? . 2) q every)) q (3436 . 4)) ((c form c (c (? . 1) q esterel)) q (0 . 5)) ((c def c (c (? . 1) q exit-trap)) q (2405 . 4)) ((c form c (c (? . 2) q abort)) q (3181 . 4)) ((c def c (c (? . 1) q signal-index)) q (1763 . 3)) ((c def c (c (? . 1) q esterel?)) q (650 . 3)) ((c def c (c (? . 0) q in_esterel)) q (3861 . 3)) ((c def c (c (? . 0) q is_signal)) q (4076 . 3)) ((c def c (c (? . 0) q with_trap)) q (4485 . 4)) ((c def c (c (? . 0) q pause)) q (4421 . 3)) ((c form c (c (? . 1) q debug-when-must)) q (814 . 2)) ((c def c (c (? . 3) q await)) q (4647 . 9)) ((c def c (c (? . 0) q debug_when_must)) q (3889 . 3)) ((c def c (c (? . 0) q exit_trap)) q (4520 . 3)) ((c def c (c (? . 0) q suspend)) q (4439 . 5)) ((c def c (c (? . 0) q emit)) q (4317 . 6)) ((c def c (c (? . 1) q emit)) q (2158 . 6)) ((c def c (c (? . 3) q halt)) q (4908 . 3)) ((c def c (c (? . 2) q sustain)) q (3036 . 4))))
 syntax
 (esterel maybe-pre expr ...)
  
@@ -132,3 +132,138 @@ syntax
 (for/par (for-clause ...) body-or-break ... body)
 syntax
 (for*/par (for-clause ...) body-or-break ... body)
+expression
+
+esterel:
+  body
+ 
+
+esterel ~pre pre:
+  body
+function
+
+fun react(r, ~emit: signals = [])
+function
+
+fun is_esterel(v)
+function
+
+fun in_esterel()
+function
+
+fun debug_when_must(stx)
+definition
+
+def_signal [(signal_definition :: SignalDefinition), ...]
+ 
+
+with_signal [(signal_definition :: SignalDefinition), ...]:
+  body
+function
+
+fun is_signal(v)
+function
+
+fun signal_name(s)
+function
+
+fun signal_index(s)
+function
+
+fun signal_combine(s)
+function
+
+fun is_present(s, ~pre: pre = 0)
+function
+
+fun signal_value(s, ~pre: n = 0, ~can: can = Set())
+function
+
+fun emit(s)
+ 
+
+fun emit(s, v)
+expression
+
+par
+| body
+| ...
+expression
+
+left ||| right
+expression
+
+pause
+expression
+
+suspend:
+  body
+  ~when when
+expression
+
+with_trap t:
+  body
+function
+
+fun exit_trap(t)
+function
+
+fun is_trap(v)
+expression
+
+loop:
+  body
+  ...
+  ~each restart
+ 
+
+loop:
+  body
+expression
+
+await when ...
+ 
+
+await when ... ~n n ...
+ 
+
+await ~immediate when ...
+expression
+
+every s ...:
+  body
+ 
+
+every s ... ~n n ...:
+  body
+ 
+
+every ~immediate s ...:
+  body
+function
+
+fun sustain(s)
+ 
+
+fun sustain(s, v)
+function
+
+fun halt()
+expression
+
+abort:
+  body ...
+  ~when when ...
+ 
+
+abort ~weak:
+  body ...
+  ~when when ...
+ 
+
+abort ~weak:
+  body ...
+  ~when_immediate when ...
+reducer
+
+|||
