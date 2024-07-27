@@ -305,7 +305,7 @@ provides additional functionality.
  Determines if @racket[s] is present in the current instant when @racket[pre] is @racket[0].
 
  If @racket[pre] is larger than zero, returns whether or not
- @racket[s] was present in previous instants. If @racket[pre]
+ @racket[s] was present in the @racket[pre]th previous instant. If @racket[pre]
  is larger than the value of the @racket[_pre-count-expr]
  passed to @racket[esterel], an error is raised.
 

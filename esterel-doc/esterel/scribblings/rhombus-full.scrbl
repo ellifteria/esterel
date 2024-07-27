@@ -78,4 +78,19 @@ As in the Racket @racketmodname(esterel/full) library, it provides all of the na
     If @rhombus(~when) is used, the @rhombus(body)s are executed at least once and the @rhombus(abort) runs for at least one instant; if @rhombus(~when_immediate) is used, the @rhombus(when) is tested in the first instant and the expression terminates in the first instant if @rhombus(when) returns a true value.
 }
 
-@doc(reducer.macro '|||'){}
+@doc(reducer.macro '|||'){
+    A reducer used with @rhombus(for), passes values to @rhombus(par).
+
+@examples(
+  ~hidden:
+    import:
+      esterel/full open
+  def_signal [x, y, z]
+  def signal_list: [x, y, z]
+  def strl:
+    esterel:
+      for ||| (i: 0..3):
+        emit(signal_list[i])
+  react(strl)
+  )
+}
