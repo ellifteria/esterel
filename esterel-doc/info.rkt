@@ -2,7 +2,7 @@
 
 (define collection 'multi)
 
-(define deps '("base" "esterel-lib" "scribble-lib"))
+(define deps '("base" "esterel-lib" "esterel-rhombus-lib" "scribble-lib"))
 (define build-deps '("racket-doc"))
 
 (define pkg-desc "Documentation for the Esterel implementation in Racket")
