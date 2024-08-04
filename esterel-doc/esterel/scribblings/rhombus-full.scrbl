@@ -65,7 +65,19 @@ In the first form, runs @rhombus(body) over and over.
 In the second form, starts by running @rhombus(body) and then @rhombus(halt)ing.
 Restarts @rhombus(body) when @rhombus(restart) becomes true.
 
+@examples(
+  ~eval: esterel_full_eval
+  def_signal [S1, S2]
+  def strl:
+    esterel:
+      loop:
+        emit(S1)
+        ~each !is_present(S2)
 
+  ~check:
+    react(strl)
+    ~is {S1: #true}
+)
 }
 
 
