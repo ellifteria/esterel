@@ -134,7 +134,7 @@ provides additional functionality.
                      (code:line #:init init-expr #:combine combine-expr)
                      (code:line #:memoryless #:init init-expr #:combine combine-expr)
                      #:single])]{
- Creates new signals and binds them to the the @racket[signal-id]s.
+ Creates new signals and binds them to the @racket[signal-id]s.
 
  Each signal suffixed with @racket[#:combine] is a value-carrying
  signal, and those without are not. Multiple emissions of the signal are
